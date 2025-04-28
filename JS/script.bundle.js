@@ -134,27 +134,27 @@ document.addEventListener('DOMContentLoaded', () => {
       body: formData,
     })
     .then(response => {
+      // Check if the response is successful (status 2xx)
       if (response.ok) {
-        // Show SweetAlert popup if form submission is successful
         Swal.fire({
           title: "Forms Submitted!",
           text: "Thank you for contacting us",
           icon: "success",
           confirmButtonText: "OK"
         });
-        form.reset(); // Reset the form after successful submission
+        form.reset(); // Reset the form after success
       } else {
-        // Show error if submission fails
+        // If response is not OK, show an error message with the response status
         Swal.fire({
           title: "Oops!",
-          text: "There was a problem submitting the form. Please try again later.",
+          text: `Error: ${response.statusText}`,
           icon: "error",
           confirmButtonText: "OK"
         });
       }
     })
     .catch(error => {
-      // In case of network failure or fetch issue
+      // Handle network or other errors
       Swal.fire({
         title: "Oops!",
         text: "There was a problem with your submission. Please try again later.",
@@ -162,8 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmButtonText: "OK"
       });
     });
-  });
-});
+    
 
 // --- Highlight Active Nav Link on Scroll ---
 const sections = document.querySelectorAll('section[id]');
