@@ -171,7 +171,7 @@
   </div>
 </section>
 
-  <!-- GET STARTED FORM -->
+ <!-- GET STARTED FORM -->
 <section class="get-started-section" id="get-started">
   <h2>How to Get Started</h2>
   <p class="contact-info">
@@ -179,21 +179,21 @@
     Email: <a href="mailto:info@thecollaborativegroupllc.com">info@thecollaborativegroupllc.com</a>
   </p>
 
-  <form class="get-started-form" action="https://formspree.io/f/mqaqzwvb" method="POST">
+  <form id="contact-form" class="get-started-form" action="https://formspree.io/f/mqaqzwvb" method="POST">
     <fieldset>
       <legend>Position Information</legend>
       
       <label>Job Title:</label>
-      <input type="text" placeholder="e.g. Software Developer" required />
+      <input type="text" name="job-title" placeholder="e.g. Software Developer" required />
 
       <label>Number of Positions:</label>
-      <input type="number" min="1" placeholder="e.g. 3" required />
+      <input type="number" name="num-positions" min="1" placeholder="e.g. 3" required />
 
       <label>Location:</label>
-      <input type="text" placeholder="e.g. Monrovia, Liberia" required />
+      <input type="text" name="location" placeholder="e.g. Monrovia, Liberia" required />
 
       <label>Staffing Solution:</label>
-      <select>
+      <select name="staffing-solution">
         <option value="">Select one</option>
         <option>Customized Request</option>
         <option>TCG Pre-Screened</option>
@@ -201,32 +201,32 @@
       </select>
 
       <label>Project Description:</label>
-      <textarea placeholder="If multiple jobs, provide details here..." rows="4"></textarea>
+      <textarea name="project-description" placeholder="If multiple jobs, provide details here..." rows="4"></textarea>
     </fieldset>
 
     <fieldset>
       <legend>Point of Contact Information</legend>
       
       <label>First Name:</label>
-      <input type="text" required />
+      <input type="text" name="first-name" required />
 
       <label>Last Name:</label>
-      <input type="text" required />
+      <input type="text" name="last-name" required />
 
       <label>Company Name (if applicable):</label>
-      <input type="text" />
+      <input type="text" name="company-name" />
 
       <label>Job Title (if applicable):</label>
-      <input type="text" />
+      <input type="text" name="job-title-applicant" />
 
       <label>Phone Number:</label>
-      <input type="tel" required />
+      <input type="tel" name="phone-number" required />
 
       <label>Email Address (if applicable):</label>
-      <input type="email" />
+      <input type="email" name="email" />
 
       <label>Best Time to Contact:</label>
-      <input type="text" placeholder="e.g. Weekday mornings" />
+      <input type="text" name="best-time-to-contact" placeholder="e.g. Weekday mornings" />
     </fieldset>
 
     <button type="submit" class="btn submit-btn">Submit</button>
@@ -237,6 +237,7 @@
   </form>
 </section>
 
+
 <!-- put this where your newsletter-section already is -->
 <section class="newsletter-section">
   <div class="newsletter-card">
@@ -246,6 +247,7 @@
       We promise not to spam you!
     </p>
     <form
+      id="newsletter-form" 
       class="newsletter-form"
       action="https://formspree.io/f/xblojqkk"
       method="POST"
@@ -269,6 +271,7 @@
     </form>
   </div>
 </section>
+
 
 
 <!-- SweetAlert2 (deferred) -->

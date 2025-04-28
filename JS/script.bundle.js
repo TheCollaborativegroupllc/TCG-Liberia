@@ -71,43 +71,97 @@ window.dispatchEvent(new Event('scroll'));
 
 // --- Newsletter Subscription Form Handler ---
 document.addEventListener('DOMContentLoaded', () => {
-  const subscribeForm = document.querySelector('.subscribe-footer-form');
-  if (!subscribeForm) return;
+  const newsletterForm = document.querySelector('.newsletter-form');
+  if (!newsletterForm) return;
 
-  subscribeForm.addEventListener('submit', e => {
-    e.preventDefault();
+  newsletterForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent Formspree's default form submission
+
     const form = e.target;
-    const data = new FormData(form);
+    const formData = new FormData(form);
 
+    // Send the form data to Formspree manually using Fetch API
     fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: { 'Accept': 'application/json' }
+      method: "POST",
+      body: formData,
     })
-      .then(response => {
-        if (response.ok) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Thank you for subscribing',
-            showConfirmButton: false,
-            timer: 2000,
-            background: '#fff',
-            iconColor: '#1d4ed8'
-          });
-          form.reset();
-        } else {
-          return response.json().then(json => {
-            throw new Error(json.error || 'Subscription failed');
-          });
-        }
-      })
-      .catch(err => {
+    .then(response => {
+      if (response.ok) {
+        // Show SweetAlert popup if form submission is successful
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.message || 'Network error, please try again.'
+          title: "Hurray!!!",
+          text: "Thanks for subscribing to our newsletter",
+          icon: "success",
+          confirmButtonText: "OK"
         });
+        form.reset(); // Reset the form after successful submission
+      } else {
+        // Show error if submission fails
+        Swal.fire({
+          title: "Oops!",
+          text: "There was a problem submitting the form. Please try again later.",
+          icon: "error",
+          confirmButtonText: "OK"
+        });
+      }
+    })
+    .catch(error => {
+      // In case of network failure or fetch issue
+      Swal.fire({
+        title: "Oops!",
+        text: "There was a problem with your submission. Please try again later.",
+        icon: "error",
+        confirmButtonText: "OK"
       });
+    });
+  });
+});
+
+// --- Contact Form Submission with SweetAlert ---
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm = document.getElementById('contact-form');
+  if (!contactForm) return;
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent Formspree's default form submission
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Send the form data to Formspree manually using Fetch API
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+    })
+    .then(response => {
+      if (response.ok) {
+        // Show SweetAlert popup if form submission is successful
+        Swal.fire({
+          title: "Forms Submitted!",
+          text: "Thank you for contacting us",
+          icon: "success",
+          confirmButtonText: "OK"
+        });
+        form.reset(); // Reset the form after successful submission
+      } else {
+        // Show error if submission fails
+        Swal.fire({
+          title: "Oops!",
+          text: "There was a problem submitting the form. Please try again later.",
+          icon: "error",
+          confirmButtonText: "OK"
+        });
+      }
+    })
+    .catch(error => {
+      // In case of network failure or fetch issue
+      Swal.fire({
+        title: "Oops!",
+        text: "There was a problem with your submission. Please try again later.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+    });
   });
 });
 
