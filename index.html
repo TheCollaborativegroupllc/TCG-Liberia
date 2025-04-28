@@ -4,13 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Collaborative Group - Liberia</title>
-  <link rel="stylesheet" href="./CSS/styles.css" />
+
+  <!-- 1️⃣ Inline critical CSS for above-the-fold (navbar + hero) -->
+  <style>
+    /* Critical: navbar */
+    .main-nav{position:fixed;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:inherit;z-index:1000;}
+    .logo-img{height:40px;}
+    /* Critical: hero-text */
+    .hero-text h1{font-size:3rem;margin-bottom:10px;}
+    .hero-text p{font-size:1.1rem;line-height:1.5;color:#555;}
+  </style>
+
+  <!-- 2️⃣ Main stylesheet (minified) -->
+  <link rel="stylesheet" href="./CSS/styles.min.css" />
+
+  <!-- 3️⃣ WebFont with font-display swap -->
+  <style>
+    @font-face {
+      font-family: 'Segoe UI';
+      src: url('/fonts/SegoeUI.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
 </head>
 <body id="top">
 
   <header class="main-nav">
     <div class="logo-container">
-      <a href="#top"><img src="./images/LOGO.png" alt="TCG Logo" class="logo-img" /></a>
+      <a href="#top"><picture>
+        <source srcset="./images/LOGO.webp" type="image/webp">
+        <source srcset="./images/LOGO.avif" type="image/avif">
+        <img
+          src="./images/LOGO.png"
+          alt="TCG Logo"
+          class="logo-img"
+          loading="lazy"
+          decoding="async"
+        >
+      </picture></a>
     </div>
 
     <nav>
@@ -238,25 +271,10 @@
 </section>
 
 
-
-<!-- include SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
- <!-- YOUR OTHER SCRIPTS -->
-<script src="./JS/script.js"></script>
-<!-- BURGER TOGGLE -->
-<script>
-  const burger = document.getElementById('burger');
-  const navMenu = document.getElementById('navMenu');
-  burger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    burger.classList.toggle('active');
-  });
-
-  function exploreFeature() {
-    document.getElementById('get-started').scrollIntoView({ behavior: 'smooth' });
-  }
-</script>
+<!-- SweetAlert2 (deferred) -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<!-- Your unified bundle (deferred) -->
+<script src="./JS/script.bundle.js" defer></script>
 
 
 </body>
