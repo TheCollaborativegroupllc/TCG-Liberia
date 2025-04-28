@@ -76,42 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
   if (newsletterForm) {
     newsletterForm.addEventListener('submit', function (e) {
       e.preventDefault(); // Prevent Formspree's default form submission
+      console.log('Form submitted'); // Debugging
 
       const form = e.target;
       const formData = new FormData(form);
 
-      // Send the form data to Formspree manually using Fetch API
       fetch(form.action, {
         method: "POST",
         body: formData,
       })
       .then(response => {
         if (response.ok) {
-          Swal.fire({
-            title: "Hurray!!!",
-            text: "Thanks for subscribing to our newsletter",
-            icon: "success",
-            confirmButtonText: "OK"
-          });
-          form.reset(); // Reset the form after successful submission
+          // After successful submission, reset the form
+          form.reset();
+          // Let Formspree show its success message
+          window.location.href = form.action + "?success=true"; // Redirect to success page or trigger the default success message
         } else {
-          // Show error if submission fails
-          Swal.fire({
-            title: "Oops!",
-            text: "There was a problem submitting the form. Please try again later.",
-            icon: "error",
-            confirmButtonText: "OK"
-          });
+          // Let Formspree show the error message
+          window.location.href = form.action + "?error=true"; // Redirect to error page if there's an issue
         }
       })
       .catch(error => {
-        // In case of network failure or fetch issue
-        Swal.fire({
-          title: "Oops!",
-          text: "There was a problem with your submission. Please try again later.",
-          icon: "error",
-          confirmButtonText: "OK"
-        });
+        console.error('Network error:', error); // Debugging
+        // Handle network failure or fetch issue
+        window.location.href = form.action + "?error=true"; // Redirect to error page
       });
     });
   }
@@ -121,47 +109,35 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault(); // Prevent Formspree's default form submission
+      console.log('Contact form submitted'); // Debugging
 
       const form = e.target;
       const formData = new FormData(form);
 
-      // Send the form data to Formspree manually using Fetch API
       fetch(form.action, {
         method: "POST",
         body: formData,
       })
       .then(response => {
-        // Check if the response is successful (status 2xx)
         if (response.ok) {
-          Swal.fire({
-            title: "Forms Submitted!",
-            text: "Thank you for contacting us",
-            icon: "success",
-            confirmButtonText: "OK"
-          });
-          form.reset(); // Reset the form after success
+          // After successful submission, reset the form
+          form.reset();
+          // Let Formspree show its success message
+          window.location.href = form.action + "?success=true"; // Redirect to success page or trigger the default success message
         } else {
-          // If response is not OK, show an error message with the response status
-          Swal.fire({
-            title: "Oops!",
-            text: `Error: ${response.statusText}`,
-            icon: "error",
-            confirmButtonText: "OK"
-          });
+          // Let Formspree show the error message
+          window.location.href = form.action + "?error=true"; // Redirect to error page if there's an issue
         }
       })
       .catch(error => {
-        // Handle network or other errors
-        Swal.fire({
-          title: "Oops!",
-          text: "There was a problem with your submission. Please try again later.",
-          icon: "error",
-          confirmButtonText: "OK"
-        });
+        console.error('Network error:', error); // Debugging
+        // Handle network failure or fetch issue
+        window.location.href = form.action + "?error=true"; // Redirect to error page
       });
     });
   }
 });
+
 
 // --- Highlight Active Nav Link on Scroll ---
 const sections = document.querySelectorAll('section[id]');
