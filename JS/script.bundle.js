@@ -69,100 +69,99 @@ window.addEventListener('scroll', handleScrollAnimations);
 // Trigger initial reveal
 window.dispatchEvent(new Event('scroll'));
 
-// --- Newsletter Subscription Form Handler ---
+// --- Newsletter & Contact Form Submission Handler ---
 document.addEventListener('DOMContentLoaded', () => {
+  // Newsletter Form Submission
   const newsletterForm = document.querySelector('.newsletter-form');
-  if (!newsletterForm) return;
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent Formspree's default form submission
 
-  newsletterForm.addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent Formspree's default form submission
+      const form = e.target;
+      const formData = new FormData(form);
 
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // Send the form data to Formspree manually using Fetch API
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-    })
-    .then(response => {
-      if (response.ok) {
-        // Show SweetAlert popup if form submission is successful
-        Swal.fire({
-          title: "Hurray!!!",
-          text: "Thanks for subscribing to our newsletter",
-          icon: "success",
-          confirmButtonText: "OK"
-        });
-        form.reset(); // Reset the form after successful submission
-      } else {
-        // Show error if submission fails
+      // Send the form data to Formspree manually using Fetch API
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+      })
+      .then(response => {
+        if (response.ok) {
+          Swal.fire({
+            title: "Hurray!!!",
+            text: "Thanks for subscribing to our newsletter",
+            icon: "success",
+            confirmButtonText: "OK"
+          });
+          form.reset(); // Reset the form after successful submission
+        } else {
+          // Show error if submission fails
+          Swal.fire({
+            title: "Oops!",
+            text: "There was a problem submitting the form. Please try again later.",
+            icon: "error",
+            confirmButtonText: "OK"
+          });
+        }
+      })
+      .catch(error => {
+        // In case of network failure or fetch issue
         Swal.fire({
           title: "Oops!",
-          text: "There was a problem submitting the form. Please try again later.",
+          text: "There was a problem with your submission. Please try again later.",
           icon: "error",
           confirmButtonText: "OK"
         });
-      }
-    })
-    .catch(error => {
-      // In case of network failure or fetch issue
-      Swal.fire({
-        title: "Oops!",
-        text: "There was a problem with your submission. Please try again later.",
-        icon: "error",
-        confirmButtonText: "OK"
       });
     });
-  });
-});
+  }
 
-// --- Contact Form Submission with SweetAlert ---
-document.addEventListener('DOMContentLoaded', () => {
+  // Contact Form Submission
   const contactForm = document.getElementById('contact-form');
-  if (!contactForm) return;
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent Formspree's default form submission
 
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent Formspree's default form submission
+      const form = e.target;
+      const formData = new FormData(form);
 
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // Send the form data to Formspree manually using Fetch API
-    fetch(form.action, {
-  method: "POST",
-  body: formData,
-})
-.then(response => {
-  // Check if the response is successful (status 2xx)
-  if (response.ok) {
-    Swal.fire({
-      title: "Forms Submitted!",
-      text: "Thank you for contacting us",
-      icon: "success",
-      confirmButtonText: "OK"
-    });
-    form.reset(); // Reset the form after success
-  } else {
-    // If response is not OK, show an error message with the response status
-    Swal.fire({
-      title: "Oops!",
-      text: `Error: ${response.statusText}`,
-      icon: "error",
-      confirmButtonText: "OK"
+      // Send the form data to Formspree manually using Fetch API
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+      })
+      .then(response => {
+        // Check if the response is successful (status 2xx)
+        if (response.ok) {
+          Swal.fire({
+            title: "Forms Submitted!",
+            text: "Thank you for contacting us",
+            icon: "success",
+            confirmButtonText: "OK"
+          });
+          form.reset(); // Reset the form after success
+        } else {
+          // If response is not OK, show an error message with the response status
+          Swal.fire({
+            title: "Oops!",
+            text: `Error: ${response.statusText}`,
+            icon: "error",
+            confirmButtonText: "OK"
+          });
+        }
+      })
+      .catch(error => {
+        // Handle network or other errors
+        Swal.fire({
+          title: "Oops!",
+          text: "There was a problem with your submission. Please try again later.",
+          icon: "error",
+          confirmButtonText: "OK"
+        });
+      });
     });
   }
-})
-.catch(error => {
-  // Handle network or other errors
-  Swal.fire({
-    title: "Oops!",
-    text: "There was a problem with your submission. Please try again later.",
-    icon: "error",
-    confirmButtonText: "OK"
-  });
 });
-
 
 // --- Highlight Active Nav Link on Scroll ---
 const sections = document.querySelectorAll('section[id]');
