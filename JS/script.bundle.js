@@ -130,39 +130,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Send the form data to Formspree manually using Fetch API
     fetch(form.action, {
-      method: "POST",
-      body: formData,
-    })
-    .then(response => {
-      // Check if the response is successful (status 2xx)
-      if (response.ok) {
-        Swal.fire({
-          title: "Forms Submitted!",
-          text: "Thank you for contacting us",
-          icon: "success",
-          confirmButtonText: "OK"
-        });
-        form.reset(); // Reset the form after success
-      } else {
-        // If response is not OK, show an error message with the response status
-        Swal.fire({
-          title: "Oops!",
-          text: `Error: ${response.statusText}`,
-          icon: "error",
-          confirmButtonText: "OK"
-        });
-      }
-    })
-    .catch(error => {
-      // Handle network or other errors
-      Swal.fire({
-        title: "Oops!",
-        text: "There was a problem with your submission. Please try again later.",
-        icon: "error",
-        confirmButtonText: "OK"
-      });
+  method: "POST",
+  body: formData,
+})
+.then(response => {
+  // Check if the response is successful (status 2xx)
+  if (response.ok) {
+    Swal.fire({
+      title: "Forms Submitted!",
+      text: "Thank you for contacting us",
+      icon: "success",
+      confirmButtonText: "OK"
     });
-    
+    form.reset(); // Reset the form after success
+  } else {
+    // If response is not OK, show an error message with the response status
+    Swal.fire({
+      title: "Oops!",
+      text: `Error: ${response.statusText}`,
+      icon: "error",
+      confirmButtonText: "OK"
+    });
+  }
+})
+.catch(error => {
+  // Handle network or other errors
+  Swal.fire({
+    title: "Oops!",
+    text: "There was a problem with your submission. Please try again later.",
+    icon: "error",
+    confirmButtonText: "OK"
+  });
+});
+
 
 // --- Highlight Active Nav Link on Scroll ---
 const sections = document.querySelectorAll('section[id]');
