@@ -134,6 +134,20 @@ body {
   }
 }
 
+/* Tablet and small desktop */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .logo-img {
+    height: 24px;
+  }
+}
+
 /* Smooth scroll for all anchors */
 html {
   scroll-behavior: smooth;
@@ -588,6 +602,135 @@ section {
   transition: all 0.6s ease;
 }
 
+.it-consultancy-section {
+  padding: 4rem 6%;
+  background-color: #ffffff;
+  margin-top: -60px;
+}
+
+.it-consultancy-section .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-left {
+  flex: 1 1 50%;
+  padding-right: 2rem;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease-out;
+}
+
+.content-left h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #204674;
+}
+
+.content-left h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.content-left p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.image-right {
+  flex: 1 1 50%;
+  position: relative;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease-out;
+}
+
+.image-wrapper {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+.overlay-image {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Scroll Reveal Animations */
+.it-consultancy-section .container .content-left,
+.it-consultancy-section .container .image-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .it-consultancy-section {
+    padding: 3rem 5%;
+  }
+
+  .it-consultancy-section .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .content-left {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .image-right {
+    margin-bottom: 2rem;
+    max-width: 90%;
+  }
+
+  .main-image {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .overlay-image {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .it-consultancy-section {
+    padding: 2rem 3%;
+  }
+
+  .content-left h2 {
+    font-size: 1.8rem;
+  }
+
+  .content-left h3 {
+    font-size: 1.1rem;
+  }
+
+  .content-left p {
+    font-size: 0.9rem;
+  }
+}
+
+
+
 .get-started-section {
    /* background: #ffffff;*/
   padding: 60px 20px;
@@ -799,6 +942,68 @@ legend {
   }
 }
 
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #fff;
+  color: #333;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: #111;
+  font-size: 1.1rem;
+}
+
+.social-icons {
+  margin: 1rem 0;
+}
+
+.social-icons a {
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #0073b1; /* Example hover color */
+}
+
+.company-info h3 {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.company-info p {
+  margin: 0.3rem 0;
+}
+
+.phone {
+  color: #9c8c8c;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #555;
+  padding-top: 2rem;
+  border-top: 1px solid #ccc;
+}
+
+.footer-bottom p {
+  margin: 0.5rem;
+}
 
 
 
