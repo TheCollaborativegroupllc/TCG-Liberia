@@ -50,7 +50,7 @@ body {
 
 @media (max-width: 480px) {
   .logo-img {
-    height: 30px;           /* phones */
+    height: 50px;           /* phones */
   }
 }
 
